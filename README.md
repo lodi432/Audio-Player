@@ -24,7 +24,11 @@ Audio Player V_1 uses a javazoom Basic Player API open source API to work proper
 
 ### Development
 
+Java on Netbeans IDE (swing)
+
 Want to contribute? Great!
+
+http://kbroman.org/github_tutorial/pages/fork.html
 
 
 
