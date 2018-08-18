@@ -34,7 +34,7 @@ http://kbroman.org/github_tutorial/pages/fork.html
 
 ### Todos
 
- - Add pause and resume functionality
+ - Add pause and resume functionality [✓]
  - Test for bugs 
 
 License
