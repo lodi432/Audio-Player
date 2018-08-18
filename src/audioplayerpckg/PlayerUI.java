@@ -137,25 +137,18 @@ public class PlayerUI extends javax.swing.JFrame {
     
         }
     
-    boolean clicked = false;
+//    boolean clicked = false;
 
     void pauza(){
         
-         if (a != 0) {
+         if (a == 1) {
             try {
-
-                int p1 = jList_plejlist.getSelectedIndex();
-                play1 = (File) this.updateList.get(p1);
-
-                player.open(new File(play1.getAbsolutePath()));
                 player.pause();
 
                 a = 1;
 
             } catch (Exception e) {
                 System.out.println("Problem playing file");
-//                System.out.println(e);
-
             }
 
             new Thread() {
@@ -164,7 +157,6 @@ public class PlayerUI extends javax.swing.JFrame {
                     try {
 
                         player.pause();
-                        player.resume();
 
                     } catch (Exception e) {
 
@@ -174,9 +166,7 @@ public class PlayerUI extends javax.swing.JFrame {
 
             }.start();
         } else {
-//            player.close();
             a = 0;
-            playme();
         }
     }
 
@@ -210,7 +200,7 @@ public class PlayerUI extends javax.swing.JFrame {
     
     void nastavi (){
         
-         if (a == 0) {
+         if (a != 0) {
             try {
 
                 player.resume();
@@ -329,6 +319,7 @@ public class PlayerUI extends javax.swing.JFrame {
         btn_stopme = new javax.swing.JButton();
         btnPrevious = new javax.swing.JButton();
         btn_nextt = new javax.swing.JButton();
+        btn_nastavi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -411,6 +402,13 @@ public class PlayerUI extends javax.swing.JFrame {
             }
         });
 
+        btn_nastavi.setText("NASTAVI");
+        btn_nastavi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_nastaviActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -434,8 +432,10 @@ public class PlayerUI extends javax.swing.JFrame {
                                     .addComponent(btn_SaveP, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btn_openP, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(btnPause, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btn_nastavi, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPause, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
                         .addComponent(btnPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
@@ -468,7 +468,9 @@ public class PlayerUI extends javax.swing.JFrame {
                     .addComponent(btn_stopme, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_nextt, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_nastavi, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -515,15 +517,13 @@ public class PlayerUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_stopmeActionPerformed
 
     private void btnPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPauseActionPerformed
-     if (!clicked) {
-         pauza();
-         btnPause.setText(">");
-     }else{
-         nastavi();
-         btnPause.setText("II");
-     }
-      
+
+        pauza();
     }//GEN-LAST:event_btnPauseActionPerformed
+
+    private void btn_nastaviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nastaviActionPerformed
+        nastavi();
+    }//GEN-LAST:event_btn_nastaviActionPerformed
 
     /**
      * @param args the command line arguments
@@ -567,6 +567,7 @@ public class PlayerUI extends javax.swing.JFrame {
     private javax.swing.JButton btn_DownP;
     private javax.swing.JButton btn_SaveP;
     private javax.swing.JButton btn_addP;
+    private javax.swing.JButton btn_nastavi;
     private javax.swing.JButton btn_nextt;
     private javax.swing.JButton btn_openP;
     private javax.swing.JButton btn_removeP;
